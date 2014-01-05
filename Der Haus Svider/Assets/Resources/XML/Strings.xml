@@ -1,0 +1,24 @@
+<Objects>
+  <MileStone0>
+    <Garage>
+      <Coliseum>
+        <Move>
+          <dialogStuff>
+            <AString>"Tom"</AString>
+          </dialogStuff>
+        </Move>
+      </Coliseum>
+    </Garage>
+  </MileStone0>
+  <MileStone1>
+    <Garage>
+      <Coliseum>
+        <Move>
+          <dialogStuff>
+            <AString>"Phil"</AString>
+          </dialogStuff>
+        </Move>
+      </Coliseum>
+    </Garage>
+  </MileStone1>
+</Objects>
