@@ -204,3 +204,73 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &781054672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 781054675}
+  - 60: {fileID: 781054674}
+  - 114: {fileID: 781054673}
+  m_Layer: 0
+  m_Name: OilSpill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &781054673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781054672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f54ae3e9c5b4a9a4f965c9856b1865de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!60 &781054674
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781054672}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Poly:
+    m_Paths:
+    - - {x: -.553251147, y: .662214398}
+      - {x: -.362942219, y: .600435853}
+      - {x: -.634148836, y: .380934715}
+      - {x: .724143565, y: .820313334}
+      - {x: .593919516, y: .50506711}
+      - {x: .870730817, y: .487727046}
+      - {x: .906689107, y: .343050003}
+      - {x: 1.43575311, y: .292389631}
+      - {x: 1.65114212, y: .175667286}
+      - {x: 1.62601233, y: -.247683048}
+      - {x: 1.74521673, y: -.550507069}
+      - {x: 1.72905517, y: -.888749838}
+      - {x: 1.56709862, y: -.994299412}
+      - {x: 1.01129663, y: -.974227428}
+      - {x: .756062329, y: -.75952363}
+      - {x: .150527716, y: -.503160715}
+      - {x: -.57788682, y: -.541753292}
+      - {x: -.572341204, y: .0303215981}
+      - {x: -1.30413342, y: -.0165989399}
+      - {x: -.970853806, y: .437699556}
+--- !u!4 &781054675
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781054672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.40228987, y: -2.43852305, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
