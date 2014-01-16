@@ -7,27 +7,50 @@ using System.Xml.Serialization;
 public class ScriptObject : MonoBehaviour {
 
 	GameObject ClickMenu;
+	int CurrentMileStone = 0;
 	
 	void Start ()
 	{
-		int CurrentMileStone = 3;
-		string ViewPoint = "Garage";
-		string ClickedObject = "Coliseum";
-		string CommandChosen = "Move";
 		
-		string A = LoadText (Application.dataPath + "\\Resources\\XML\\Strings.xml");
-		string B = SubStrA (A, "<MileStone0>", "</MileStone0>");
-		string C = "<MileStone" + CurrentMileStone + ">";
-		if (StrSea (A, C)) { C = SubStrA (A, "<MileStone" + CurrentMileStone + ">", "</MileStone" + CurrentMileStone + ">"); }
-		else { C = ""; }
-		if (C == "") { C = B; }
-		C = SubStrA (C, "<" + ViewPoint + ">", "</" + ViewPoint + ">");
-		C = SubStrA (C, "<" + ClickedObject + ">", "</" + ClickedObject + ">");
-		C = SubStrA (C, "<" + CommandChosen + ">", "</" + CommandChosen + ">");
-		Debug.Log (C);
-		Debug.Log (GameObject.Find ("Main Camera").camera.orthographicSize);
 	}
 	
+	public string PullFromXML(string _viewPoint, string _objectName, string _commandChosen)
+	{
+		string XML = LoadText (Application.dataPath + "\\Resources\\XML\\Strings.xml");
+		string FromThis = "";
+		if (GetObjectCommandText (XML, _viewPoint, _objectName, _commandChosen, CurrentMileStone) == "")
+		{
+			FromThis = GetObjectCommandText (XML, _viewPoint, _objectName, _commandChosen, 0);
+		}
+		else
+		{
+			FromThis = GetObjectCommandText (XML, _viewPoint, _objectName, _commandChosen, CurrentMileStone);
+		}
+		return FromThis;
+	}
+	public string GetObjectCommandText(string XML, string _viewPoint, string _objectName, string _commandChosen, int _mileStone)
+	{
+		string A = "MileStone" + _mileStone;
+		string B = XML;
+		string C = "";
+		if (StrSea (B, "<" + A + ">"))
+		{
+			B = SubStrA (XML, "<" + A + ">", "</" + A + ">");
+			if (StrSea (B, "<" + _viewPoint + ">"))
+			{
+				B = SubStrA (B, "<" + _viewPoint + ">", "</" + _viewPoint + ">");
+				if (StrSea (B, "<" + _objectName + ">"))
+				{
+					B = SubStrA (B, "<" + _objectName + ">", "</" + _objectName + ">");
+					if (StrSea (B, "<" + _commandChosen + ">"))
+					{
+						C = SubStrA (B, "<" + _commandChosen + ">", "</" + _commandChosen + ">");
+					}
+				}
+			}
+		}
+		return C;
+	}
 	/// <summary>
 	/// Loads all text from a file into a <c>string</c>.
 	/// </summary>
@@ -51,7 +74,7 @@ public class ScriptObject : MonoBehaviour {
 	/// <param name="AllTextBeforeThis">The <c>char</c> you want to get all text before it's appearance.</param>
 	/// <param name="LastIndex">Set this to <c>true</c> to get all text before the last instance of the <c>char</c> in the string.</param>
 	/// <returns>A <c>string</c> containing all text found before the chosen character.</returns>
-	public string SubStrB(string FullString, string AllTextBeforeThis, bool LastIndex = false)
+	public string SubStrB(string FullString, string AllTextBeforeThis, bool LastIndex)
 	{
 		try
 		{
@@ -77,8 +100,8 @@ public class ScriptObject : MonoBehaviour {
 	/// <returns>A <c>string</c> containing all text found between the chosen characters.</returns>
 	public string SubStrA(string FullString, string AllTextAfterThis, string AllTextBeforeThis)
 	{
-		FullString = SubStrA(FullString, AllTextAfterThis);
-		FullString = SubStrB(FullString, AllTextBeforeThis);
+		FullString = SubStrA(FullString, AllTextAfterThis, false);
+		FullString = SubStrB(FullString, AllTextBeforeThis, false);
 		return FullString;
 	}
 	
@@ -91,8 +114,8 @@ public class ScriptObject : MonoBehaviour {
 	/// <returns>A <c>string</c> containing all text found between the chosen characters.</returns>
 	public string SubStrB(string FullString, string AllTextBeforeThis, string AllTextAfterThis)
 	{
-		FullString = SubStrB(FullString, AllTextBeforeThis);
-		FullString = SubStrA(FullString, AllTextAfterThis);
+		FullString = SubStrB(FullString, AllTextBeforeThis, false);
+		FullString = SubStrA(FullString, AllTextAfterThis, false);
 		return FullString;
 	}
 	
@@ -103,7 +126,7 @@ public class ScriptObject : MonoBehaviour {
 	/// <param name="AllTextBeforeThis">The <c>char</c> you want to get all text after it's appearance.</param>
 	/// <param name="LastIndex">Set this to <c>true</c> to get all text after the last instance of the <c>char</c> in the string.</param>
 	/// <returns>A <c>string</c> containing all text found after the chosen character.</returns>
-	public string SubStrA(string FullString, string AllTextAfterThis, bool LastIndex = false)
+	public string SubStrA(string FullString, string AllTextAfterThis, bool LastIndex)
 	{
 		try
 		{
