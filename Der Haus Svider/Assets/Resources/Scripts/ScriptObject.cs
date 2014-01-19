@@ -18,14 +18,12 @@ public class ScriptObject : MonoBehaviour {
 	{
 		string XML = LoadText (Application.dataPath + "\\Resources\\XML\\Strings.xml");
 		string FromThis = "";
-		if (GetObjectCommandText (XML, _viewPoint, _objectName, _commandChosen, CurrentMileStone) == "")
+		FromThis = GetObjectCommandText (XML, _viewPoint, _objectName, _commandChosen, CurrentMileStone);
+		if (FromThis == "")
 		{
 			FromThis = GetObjectCommandText (XML, _viewPoint, _objectName, _commandChosen, 0);
 		}
-		else
-		{
-			FromThis = GetObjectCommandText (XML, _viewPoint, _objectName, _commandChosen, CurrentMileStone);
-		}
+		XML = "";
 		return FromThis;
 	}
 	public string GetObjectCommandText(string XML, string _viewPoint, string _objectName, string _commandChosen, int _mileStone)
@@ -35,7 +33,7 @@ public class ScriptObject : MonoBehaviour {
 		string C = "";
 		if (StrSea (B, "<" + A + ">"))
 		{
-			B = SubStrA (XML, "<" + A + ">", "</" + A + ">");
+			B = SubStrA (B, "<" + A + ">", "</" + A + ">");
 			if (StrSea (B, "<" + _viewPoint + ">"))
 			{
 				B = SubStrA (B, "<" + _viewPoint + ">", "</" + _viewPoint + ">");
